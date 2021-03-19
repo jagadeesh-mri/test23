@@ -1,0 +1,4 @@
+{
+	"city":"Bangalore",
+	"hotelGroup":"OYO"
+}

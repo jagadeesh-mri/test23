@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="0ab5423a-85af-4561-8000-14f1f35ff74a" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="dataweaveFlow" doc:id="59d9fc68-8b52-4931-a2a1-e6ed5c68e97c" >
+		<http:listener doc:name="Listener" doc:id="3a388049-b2e0-4145-bfb2-689218097d91" config-ref="HTTP_Listener_config" path="/dataweave1" allowedMethods="POST"/>
+		<ee:transform doc:name="Transform Message" doc:id="0e2e1c28-d0ff-4af9-a2c2-5c0d4a9c649e" >
+			<ee:message >
+				<ee:set-payload resource="mypayload.dwl" />
+			</ee:message>
+			<ee:variables >
+				<ee:set-variable resource="json.dwl" variableName="json" />
+				<ee:set-variable resource="xml.dwl" variableName="xml" />
+			</ee:variables>
+		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="4e2fd4a5-1932-4b5b-b25e-b65902993039" />
+	</flow>
+</mule>
