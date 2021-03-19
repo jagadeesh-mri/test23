@@ -14,7 +14,7 @@ http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/
 			<ee:message >
 				<ee:set-payload resource="mypayload.dwl" />
 			</ee:message>
-			<ee:variables >
+			 <ee:variables >
 				<ee:set-variable resource="json.dwl" variableName="json" />
 				<ee:set-variable resource="xml.dwl" variableName="xml" />
 			</ee:variables>
